@@ -2,31 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Audio Capture</title>
-    <!-- Include Socket.IO client -->
-    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
-    <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', (event) => {
-            var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
-            navigator.mediaDevices.getUserMedia({ audio: true, video: false })
-                .then(stream => {
-                    const mediaRecorder = new MediaRecorder(stream);
-                    mediaRecorder.onstart = function() {
-                        console.log("Audio capturing started");
-                    };
-                    mediaRecorder.ondataavailable = function(e) {
-                        socket.emit('audio_data', e.data);
-                    };
-                    mediaRecorder.start(1000); // Split audio into chunks of 1 second
-                })
-                .catch(error => {
-                    console.error("Error capturing audio:", error);
-                });
-        });
-    </script>
+    <title>Speech to Text Transcriber</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/static/js/hark.bundle.js"></script>
+    <script src="/static/js/app.js"></script>
 </head>
 <body>
-    <h1>Audio Capture Example</h1>
-    <!-- You can add controls or indicators for recording status here -->
+    <h2>Speech to Text Transcriber</h2>
+    <button id="startRecording">Start Recording</button>
+    <audio id="responseAudio" controls hidden>
+        Your browser does not support the audio element.
+    </audio>
 </body>
 </html>
