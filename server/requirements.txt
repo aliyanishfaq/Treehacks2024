@@ -6,3 +6,4 @@ twilio
 requests
 langchain
 langchainhub
+flask_cors

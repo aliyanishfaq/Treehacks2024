@@ -14,8 +14,10 @@ from twilio.rest import Client
 import googlemaps
 import os
 import requests
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+CORS(app, supports_credentials=True, resources={r'/*': {'origins': '*'}})
 client = OpenAI()
 
 load_dotenv()
@@ -154,4 +156,4 @@ def handle_question():
     return jsonify({'speech_url': speech_path})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(debug=True)
