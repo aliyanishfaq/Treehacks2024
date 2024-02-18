@@ -1,1 +1,5 @@
 /venv
+.env
+react-native/hoshiAI/node_modules
+react-native
+react-native2
